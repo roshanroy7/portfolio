@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roshan Palem — Software Engineer & AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0a0a0a;
+    --ink-secondary: #3d3d3d;
+    --ink-tertiary: #888;
+    --rule: #e2e2e2;
+    --bg: #fafafa;
+    --bg-card: #ffffff;
+    --accent: #0066ff;
+    --accent-light: #e8f0ff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,250,250,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 48px;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: var(--ink-secondary);
+    text-decoration: none; transition: color 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 48px 80px;
+    max-width: 1100px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 500; color: var(--accent);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+  .hero-tag::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+  .hero h1 em { font-style: italic; color: var(--ink-secondary); }
+  .hero-sub {
+    font-size: 18px; font-weight: 300; color: var(--ink-secondary);
+    max-width: 580px; line-height: 1.7;
+    margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: #fff;
+    padding: 13px 28px; border-radius: 6px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: opacity 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--ink);
+    padding: 13px 28px; border-radius: 6px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none; border: 1.5px solid var(--rule);
+    transition: border-color 0.2s, background 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .btn-secondary:hover { border-color: var(--ink); background: #f5f5f5; }
+  .hero-stats {
+    display: flex; gap: 48px; flex-wrap: wrap;
+    margin-top: 72px; padding-top: 40px;
+    border-top: 1px solid var(--rule);
+    opacity: 0; animation: fadeUp 0.7s ease 0.5s forwards;
+  }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 40px; line-height: 1;
+    letter-spacing: -0.02em; color: var(--ink);
+  }
+  .stat-label { font-size: 13px; color: var(--ink-tertiary); margin-top: 4px; font-weight: 400; }
+
+  /* SECTIONS */
+  section { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-tertiary);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 56px;
+    line-height: 1.1;
+  }
+
+  /* PROJECTS */
+  .projects-grid { display: flex; flex-direction: column; gap: 2px; }
+  .project-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 32px;
+    padding: 36px 0;
+    border-top: 1px solid var(--rule);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .project-row:last-child { border-bottom: 1px solid var(--rule); }
+  .project-row:hover .project-arrow { transform: translate(4px, -4px); }
+  .project-num {
+    font-size: 12px; font-weight: 500; color: var(--ink-tertiary);
+    margin-bottom: 12px; letter-spacing: 0.05em;
+  }
+  .project-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px; letter-spacing: -0.01em;
+    color: var(--ink); margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .project-desc {
+    font-size: 15px; color: var(--ink-secondary);
+    max-width: 600px; line-height: 1.65;
+    font-weight: 300; margin-bottom: 16px;
+  }
+  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    font-size: 12px; font-weight: 500;
+    padding: 4px 12px; border-radius: 3px;
+    background: var(--accent-light); color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .tag-dark {
+    background: #f0f0f0; color: var(--ink-secondary);
+  }
+  .project-arrow {
+    font-size: 20px; color: var(--ink-tertiary);
+    transition: transform 0.2s; margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .project-metric {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; color: #16a34a;
+    background: #f0fdf4; padding: 4px 10px; border-radius: 3px;
+    margin-bottom: 12px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 16px; color: var(--ink-secondary);
+    line-height: 1.8; font-weight: 300; margin-bottom: 20px;
+  }
+  .about-text p strong { color: var(--ink); font-weight: 500; }
+  .skills-cols { display: flex; flex-direction: column; gap: 24px; }
+  .skill-group-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-tertiary);
+    margin-bottom: 8px;
+  }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-pill {
+    font-size: 13px; font-weight: 400;
+    padding: 5px 12px; border-radius: 4px;
+    border: 1px solid var(--rule); color: var(--ink-secondary);
+    background: var(--bg-card);
+  }
+
+  /* CONTACT */
+  #contact { border-top: 1px solid var(--rule); }
+  .contact-inner {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; gap: 40px; flex-wrap: wrap;
+  }
+  .contact-heading {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.02em; line-height: 1.05;
+    color: var(--ink); max-width: 480px;
+  }
+  .contact-heading em { font-style: italic; color: var(--ink-secondary); }
+  .contact-links { display: flex; flex-direction: column; gap: 16px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 15px; color: var(--ink-secondary);
+    text-decoration: none; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--ink); }
+  .contact-link-icon { font-size: 16px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 28px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+  }
+  footer p { font-size: 13px; color: var(--ink-tertiary); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in {
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { gap: 20px; }
+    .hero { padding: 100px 24px 60px; }
+    section { padding: 72px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .project-row { grid-template-columns: 1fr; }
+    .project-arrow { display: none; }
+    .hero-stats { gap: 32px; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Roshan Palem</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Available for hire &mdash; Software, AI/ML & Data roles &mdash; Dublin, Ireland</div>
+  <h1>Full Stack Engineer<br><em>&amp; AI/ML Builder</em></h1>
+  <p class="hero-sub">I build across the stack — React frontends, Node.js and FastAPI backends, PostgreSQL databases, and production ML systems with CNN, BiLSTM, and LangChain. Open to Software Engineering, AI/ML, and Data roles.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View my work &darr;</a>
+    <a href="https://github.com/roshanroy7" target="_blank" class="btn-secondary">GitHub &nearr;</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">3</div>
+      <div class="stat-label">Shipped projects</div>
+    </div>
+    <div>
+      <div class="stat-num">92%</div>
+      <div class="stat-label">ML model accuracy</div>
+    </div>
+    <div>
+      <div class="stat-num">1.2TB</div>
+      <div class="stat-label">Satellite data processed</div>
+    </div>
+    <div>
+      <div class="stat-num">MSc</div>
+      <div class="stat-label">Computer Science, UCD</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Selected Work</div>
+  <div class="section-title">Projects I've shipped</div>
+  <div class="projects-grid">
+
+    <a href="https://github.com/roshanroy7" target="_blank" class="project-row fade-in">
+      <div>
+        <div class="project-num">01</div>
+        <div class="project-metric">&#x2713; 92% detection accuracy</div>
+        <div class="project-name">HAB Detection System</div>
+        <div class="project-desc">An AI-powered harmful algal bloom detection platform built as my MSc team project at UCD. Uses CNN+BiLSTM+Attention models trained on 1.2TB of NASA satellite data. I led the Next.js frontend with interactive Leaflet.js maps, contributed to the ML preprocessing pipeline, and supported GCP cloud deployment. Reduces HAB response time from 3-5 days to under 30 seconds.</div>
+        <div class="project-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">CNN+BiLSTM</span>
+          <span class="tag">YOLOv11</span>
+          <span class="tag">GCP</span>
+          <span class="tag">Python</span>
+          <span class="tag tag-dark">MSc Project, UCD</span>
+        </div>
+      </div>
+      <div class="project-arrow">&nearr;</div>
+    </a>
+
+    <a href="https://github.com/roshanroy7/talkdoc" target="_blank" class="project-row fade-in">
+      <div>
+        <div class="project-num">02</div>
+        <div class="project-name">TalkDoc</div>
+        <div class="project-desc">A RAG-powered document Q&A system. Upload any PDF and ask questions in plain English — answers are grounded in exact source chunks for full transparency. Co-built using LangChain for document ingestion and retrieval, ChromaDB as the vector store, and Mistral 7B running locally via Ollama. Zero API cost, no OpenAI dependency.</div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">RAG</span>
+          <span class="tag">ChromaDB</span>
+          <span class="tag">Ollama</span>
+          <span class="tag">Streamlit</span>
+        </div>
+      </div>
+      <div class="project-arrow">&nearr;</div>
+    </a>
+
+    <a href="https://job-board-ashen-one.vercel.app" target="_blank" class="project-row fade-in">
+      <div>
+        <div class="project-num">03</div>
+        <div class="project-metric">&#x1F517; Live at job-board-ashen-one.vercel.app</div>
+        <div class="project-name">JobBoard</div>
+        <div class="project-desc">A full-stack job board built from scratch. React frontend with live search, job type filters, and multi-page navigation via React Router. Node.js/Express REST API connected to a PostgreSQL database. Deployed end-to-end — frontend on Vercel, backend and database on Railway.</div>
+        <div class="project-tags">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Vercel</span>
+          <span class="tag">Railway</span>
+        </div>
+      </div>
+      <div class="project-arrow">&nearr;</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="section-title">Who I am</div>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I'm <strong>Roshan Palem</strong>, a recent MSc Computer Science graduate from <strong>University College Dublin</strong>. I build across the full stack — from React and Next.js frontends to Node.js and FastAPI backends, PostgreSQL databases, and production ML systems.</p>
+      <p>My project work spans deep learning (CNN, BiLSTM, YOLOv11), RAG-based AI (LangChain, ChromaDB, Ollama), and full-stack web development — all shipped and deployed on GCP, Vercel, and Railway.</p>
+      <p>I'm open to <strong>Software Engineering, AI/ML Engineering, and Data Engineering</strong> roles. Based in <strong>Dublin, Ireland</strong> and available immediately.</p>
+      <div style="margin-top:32px">
+        <a href="https://linkedin.com/in/roshanpalem-474979239" target="_blank" class="btn-secondary" style="display:inline-flex">LinkedIn &nearr;</a>
+      </div>
+    </div>
+    <div class="skills-cols fade-in">
+      <div>
+        <div class="skill-group-label">Languages</div>
+        <div class="skill-pills">
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">HTML/CSS</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Frontend</div>
+        <div class="skill-pills">
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">Next.js</span>
+          <span class="skill-pill">React Router</span>
+          <span class="skill-pill">Leaflet.js</span>
+          <span class="skill-pill">Tailwind CSS</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Backend</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">Express.js</span>
+          <span class="skill-pill">FastAPI</span>
+          <span class="skill-pill">REST APIs</span>
+          <span class="skill-pill">JWT Auth</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">AI / ML</div>
+        <div class="skill-pills">
+          <span class="skill-pill">LangChain</span>
+          <span class="skill-pill">RAG</span>
+          <span class="skill-pill">CNN + BiLSTM</span>
+          <span class="skill-pill">YOLOv11</span>
+          <span class="skill-pill">Ollama</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Cloud / DevOps</div>
+        <div class="skill-pills">
+          <span class="skill-pill">GCP</span>
+          <span class="skill-pill">Cloud Run</span>
+          <span class="skill-pill">Vercel</span>
+          <span class="skill-pill">Railway</span>
+          <span class="skill-pill">CI/CD</span>
+          <span class="skill-pill">Docker</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Databases</div>
+        <div class="skill-pills">
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">ChromaDB</span>
+          <span class="skill-pill">Firestore</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label" style="margin-bottom:20px">Get in touch</div>
+      <div class="contact-heading">Let's work<br><em>together.</em></div>
+    </div>
+    <div class="contact-links fade-in">
+      <a href="mailto:palemroshanroy@gmail.com" class="contact-link">
+        <span class="contact-link-icon">&#9993;</span>
+        palemroshanroy@gmail.com
+      </a>
+      <a href="https://github.com/roshanroy7" target="_blank" class="contact-link">
+        <span class="contact-link-icon">&#128037;</span>
+        github.com/roshanroy7
+      </a>
+      <a href="https://linkedin.com/in/roshanpalem-474979239" target="_blank" class="contact-link">
+        <span class="contact-link-icon">&#128279;</span>
+        linkedin.com/in/roshanpalem-474979239
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Roshan Palem &mdash; Dublin, Ireland</p>
+  <p>Built with HTML, CSS &amp; JS</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
