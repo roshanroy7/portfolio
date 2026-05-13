@@ -1,501 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
 <title>Roshan Palem — Software Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Geist+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --ink: #0a0a0a;
-    --ink-secondary: #3d3d3d;
-    --ink-tertiary: #888;
-    --rule: #e2e2e2;
-    --bg: #fafafa;
-    --bg-card: #ffffff;
-    --accent: #0066ff;
-    --accent-light: #e8f0ff;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(250,250,250,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--rule);
-    padding: 0 48px;
-    height: 60px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .nav-logo {
-    font-family: 'Instrument Serif', serif;
-    font-size: 20px;
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a {
-    font-size: 14px; font-weight: 500; color: var(--ink-secondary);
-    text-decoration: none; transition: color 0.2s;
-    letter-spacing: 0.01em;
-  }
-  .nav-links a:hover { color: var(--ink); }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 120px 48px 80px;
-    max-width: 1100px; margin: 0 auto;
-    position: relative;
-  }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 13px; font-weight: 500; color: var(--accent);
-    letter-spacing: 0.08em; text-transform: uppercase;
-    margin-bottom: 28px;
-    opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
-  }
-  .hero-tag::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent);
-  }
-  .hero h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(52px, 7vw, 88px);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--ink);
-    margin-bottom: 28px;
-    opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards;
-  }
-  .hero h1 em { font-style: italic; color: var(--ink-secondary); }
-  .hero-sub {
-    font-size: 18px; font-weight: 300; color: var(--ink-secondary);
-    max-width: 580px; line-height: 1.7;
-    margin-bottom: 48px;
-    opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards;
-  }
-  .hero-actions {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--ink); color: #fff;
-    padding: 13px 28px; border-radius: 6px;
-    font-size: 14px; font-weight: 500;
-    text-decoration: none; transition: opacity 0.2s;
-    letter-spacing: 0.01em;
-  }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: var(--ink);
-    padding: 13px 28px; border-radius: 6px;
-    font-size: 14px; font-weight: 500;
-    text-decoration: none; border: 1.5px solid var(--rule);
-    transition: border-color 0.2s, background 0.2s;
-    letter-spacing: 0.01em;
-  }
-  .btn-secondary:hover { border-color: var(--ink); background: #f5f5f5; }
-  .hero-stats {
-    display: flex; gap: 48px; flex-wrap: wrap;
-    margin-top: 72px; padding-top: 40px;
-    border-top: 1px solid var(--rule);
-    opacity: 0; animation: fadeUp 0.7s ease 0.5s forwards;
-  }
-  .stat-num {
-    font-family: 'Instrument Serif', serif;
-    font-size: 40px; line-height: 1;
-    letter-spacing: -0.02em; color: var(--ink);
-  }
-  .stat-label { font-size: 13px; color: var(--ink-tertiary); margin-top: 4px; font-weight: 400; }
-
-  /* SECTIONS */
-  section { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
-  .section-label {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--ink-tertiary);
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(32px, 4vw, 48px);
-    letter-spacing: -0.02em;
-    color: var(--ink); margin-bottom: 56px;
-    line-height: 1.1;
-  }
-
-  /* PROJECTS */
-  .projects-grid { display: flex; flex-direction: column; gap: 2px; }
-  .project-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: start;
-    gap: 32px;
-    padding: 36px 0;
-    border-top: 1px solid var(--rule);
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.15s;
-    cursor: pointer;
-  }
-  .project-row:last-child { border-bottom: 1px solid var(--rule); }
-  .project-row:hover .project-arrow { transform: translate(4px, -4px); }
-  .project-num {
-    font-size: 12px; font-weight: 500; color: var(--ink-tertiary);
-    margin-bottom: 12px; letter-spacing: 0.05em;
-  }
-  .project-name {
-    font-family: 'Instrument Serif', serif;
-    font-size: 28px; letter-spacing: -0.01em;
-    color: var(--ink); margin-bottom: 10px;
-    line-height: 1.2;
-  }
-  .project-desc {
-    font-size: 15px; color: var(--ink-secondary);
-    max-width: 600px; line-height: 1.65;
-    font-weight: 300; margin-bottom: 16px;
-  }
-  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .tag {
-    font-size: 12px; font-weight: 500;
-    padding: 4px 12px; border-radius: 3px;
-    background: var(--accent-light); color: var(--accent);
-    letter-spacing: 0.02em;
-  }
-  .tag-dark {
-    background: #f0f0f0; color: var(--ink-secondary);
-  }
-  .project-arrow {
-    font-size: 20px; color: var(--ink-tertiary);
-    transition: transform 0.2s; margin-top: 4px;
-    flex-shrink: 0;
-  }
-  .project-metric {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; font-weight: 600; color: #16a34a;
-    background: #f0fdf4; padding: 4px 10px; border-radius: 3px;
-    margin-bottom: 12px;
-  }
-
-  /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .about-text p {
-    font-size: 16px; color: var(--ink-secondary);
-    line-height: 1.8; font-weight: 300; margin-bottom: 20px;
-  }
-  .about-text p strong { color: var(--ink); font-weight: 500; }
-  .skills-cols { display: flex; flex-direction: column; gap: 24px; }
-  .skill-group-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--ink-tertiary);
-    margin-bottom: 8px;
-  }
-  .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-  .skill-pill {
-    font-size: 13px; font-weight: 400;
-    padding: 5px 12px; border-radius: 4px;
-    border: 1px solid var(--rule); color: var(--ink-secondary);
-    background: var(--bg-card);
-  }
-
-  /* CONTACT */
-  #contact { border-top: 1px solid var(--rule); }
-  .contact-inner {
-    display: flex; justify-content: space-between;
-    align-items: flex-end; gap: 40px; flex-wrap: wrap;
-  }
-  .contact-heading {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(36px, 5vw, 64px);
-    letter-spacing: -0.02em; line-height: 1.05;
-    color: var(--ink); max-width: 480px;
-  }
-  .contact-heading em { font-style: italic; color: var(--ink-secondary); }
-  .contact-links { display: flex; flex-direction: column; gap: 16px; }
-  .contact-link {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 15px; color: var(--ink-secondary);
-    text-decoration: none; font-weight: 400;
-    transition: color 0.2s;
-  }
-  .contact-link:hover { color: var(--ink); }
-  .contact-link-icon { font-size: 16px; }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 28px 48px;
-    display: flex; justify-content: space-between; align-items: center;
-    max-width: 1100px; margin: 0 auto;
-  }
-  footer p { font-size: 13px; color: var(--ink-tertiary); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .fade-in {
-    opacity: 0; transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  .fade-in.visible { opacity: 1; transform: none; }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 0 24px; }
-    .nav-links { gap: 20px; }
-    .hero { padding: 100px 24px 60px; }
-    section { padding: 72px 24px; }
-    .about-grid { grid-template-columns: 1fr; gap: 48px; }
-    .project-row { grid-template-columns: 1fr; }
-    .project-arrow { display: none; }
-    .hero-stats { gap: 32px; }
-    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--black:#080808;--white:#f5f0e8;--accent:#c8f135;--gray:#1a1a1a;--muted:#444;--border:#222}
+body{background:var(--black);color:var(--white);font-family:'Geist Mono',monospace;cursor:none;overflow-x:hidden}
+.cursor{width:12px;height:12px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform 0.1s ease;mix-blend-mode:difference}
+.cursor-trail{width:40px;height:40px;border:1px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:all 0.15s ease;opacity:0.4}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;justify-content:space-between;align-items:center;transition:all 0.3s ease}
+nav.scrolled{background:rgba(8,8,8,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(10px)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--accent);letter-spacing:2px}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--white)}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 80px;position:relative;z-index:2}
+.hero-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-tag::before{content:'';width:40px;height:1px;background:var(--accent)}
+.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,10vw,140px);line-height:0.9;letter-spacing:-2px;color:var(--white);margin-bottom:32px}
+.hero-name span{display:block;color:transparent;-webkit-text-stroke:1px var(--white)}
+.hero-desc{font-size:13px;line-height:1.8;color:var(--muted);max-width:380px;margin-bottom:48px}
+.hero-ctas{display:flex;gap:16px}
+.btn-primary{background:var(--accent);color:var(--black);padding:14px 28px;font-family:'Geist Mono',monospace;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:none;cursor:none;transition:all 0.2s ease}
+.btn-primary:hover{background:var(--white);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--white);padding:14px 28px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);cursor:none;transition:all 0.2s ease}
+.btn-secondary:hover{border-color:var(--white);transform:translateY(-2px)}
+.hero-right{position:relative;overflow:hidden}
+.hero-photo{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(100%) contrast(1.1);transition:filter 0.4s ease}
+.hero-right:hover .hero-photo{filter:grayscale(60%) contrast(1.1)}
+.hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--black) 0%,transparent 30%);z-index:1}
+.marquee-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;background:var(--gray)}
+.marquee-track{display:flex;white-space:nowrap;animation:marquee 20s linear infinite}
+.marquee-item{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;color:var(--muted);padding:0 40px}
+.marquee-item span{color:var(--accent);margin-right:40px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+section{padding:120px 48px}
+.section-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-label::before{content:'';width:30px;height:1px;background:var(--accent)}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,72px);line-height:1.05;color:var(--white);margin-bottom:64px}
+.section-title em{font-style:italic;color:transparent;-webkit-text-stroke:1px var(--white)}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.project-card{background:var(--black);padding:48px;position:relative;overflow:hidden;transition:background 0.3s ease;text-decoration:none;display:block}
+.project-card:hover{background:var(--gray)}
+.project-card::after{content:'↗';position:absolute;top:48px;right:48px;font-size:20px;color:var(--accent);opacity:0;transform:translate(-4px,4px);transition:all 0.2s ease}
+.project-card:hover::after{opacity:1;transform:translate(0,0)}
+.project-number{font-size:10px;letter-spacing:3px;color:var(--muted);margin-bottom:32px}
+.project-name{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:1px;color:var(--white);margin-bottom:8px;line-height:1}
+.project-tagline{font-size:12px;color:var(--accent);margin-bottom:24px;letter-spacing:1px}
+.project-desc{font-size:12px;line-height:1.8;color:var(--muted);margin-bottom:32px}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border:1px solid var(--border);color:var(--muted)}
+.project-card.featured{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.project-card.featured .project-name{font-size:72px}
+.project-live{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-top:24px}
+.project-live::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+.skills-section{background:var(--gray);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.skill-group{background:var(--gray);padding:40px 32px}
+.skill-group-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+.skill-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.skill-list li{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px;transition:color 0.2s}
+.skill-list li::before{content:'▸';color:var(--accent);font-size:8px}
+.skill-list li:hover{color:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-text p{font-size:13px;line-height:2;color:var(--muted);margin-bottom:20px}
+.about-text p strong{color:var(--white);font-weight:600}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.stat-box{background:var(--black);padding:32px}
+.stat-number{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--accent);line-height:1;margin-bottom:8px}
+.stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.contact-section{border-top:1px solid var(--border);text-align:center}
+.contact-email{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,64px);color:var(--white);text-decoration:none;letter-spacing:2px;transition:color 0.2s;display:inline-block;margin-bottom:48px}
+.contact-email:hover{color:var(--accent)}
+.social-links{display:flex;justify-content:center;gap:32px;list-style:none}
+.social-links a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;border-bottom:1px solid transparent;padding-bottom:2px}
+.social-links a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+footer{padding:32px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:10px;letter-spacing:2px;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
-
-<nav>
-  <a href="#" class="nav-logo">Roshan Palem</a>
-  <ul class="nav-links">
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+<nav id="nav">
+<div class="nav-logo">RP</div>
+<ul class="nav-links">
+<li><a href="#projects">Projects</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 </nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-tag">Available for hire &mdash; Dublin, Ireland</div>
-  <h1>Software Engineer<br><em>&amp; MSc Graduate</em></h1>
-  <p class="hero-sub">I build full-stack web applications and production ML systems. From interactive frontends to deep learning pipelines — shipped and deployed.</p>
-  <div class="hero-actions">
-    <a href="#projects" class="btn-primary">View my work &darr;</a>
-    <a href="https://github.com/roshanroy7" target="_blank" class="btn-secondary">GitHub &nearr;</a>
-  </div>
-  <div class="hero-stats">
-    <div>
-      <div class="stat-num">3</div>
-      <div class="stat-label">Shipped projects</div>
-    </div>
-    <div>
-      <div class="stat-num">92%</div>
-      <div class="stat-label">ML model accuracy</div>
-    </div>
-    <div>
-      <div class="stat-num">1.2TB</div>
-      <div class="stat-label">Satellite data processed</div>
-    </div>
-    <div>
-      <div class="stat-num">MSc</div>
-      <div class="stat-label">Computer Science, UCD</div>
-    </div>
-  </div>
+<section class="hero">
+<div class="hero-left">
+<div class="hero-tag">Available for hire — Dublin, Ireland</div>
+<h1 class="hero-name">Roshan<span>Palem</span></h1>
+<p class="hero-desc">Full Stack Engineer & AI/ML Builder. I build things that actually work — React frontends, Node.js backends, production ML systems. MSc Computer Science, UCD.</p>
+<div class="hero-ctas">
+<a href="#projects" class="btn-primary">View My Work</a>
+<a href="https://github.com/roshanroy7" target="_blank" class="btn-secondary">GitHub ↗</a>
 </div>
-
-<!-- PROJECTS -->
+</div>
+<div class="hero-right">
+<img src="IMG_3157.jpeg" alt="Roshan Palem" class="hero-photo"/>
+<div class="hero-photo-overlay"></div>
+</div>
+</section>
+<div class="marquee-section">
+<div class="marquee-track">
+<div class="marquee-item"><span>✦</span>React</div><div class="marquee-item"><span>✦</span>Node.js</div><div class="marquee-item"><span>✦</span>Python</div><div class="marquee-item"><span>✦</span>PostgreSQL</div><div class="marquee-item"><span>✦</span>LangChain</div><div class="marquee-item"><span>✦</span>GCP</div><div class="marquee-item"><span>✦</span>FastAPI</div><div class="marquee-item"><span>✦</span>Supabase</div><div class="marquee-item"><span>✦</span>AWS Certified</div>
+<div class="marquee-item"><span>✦</span>React</div><div class="marquee-item"><span>✦</span>Node.js</div><div class="marquee-item"><span>✦</span>Python</div><div class="marquee-item"><span>✦</span>PostgreSQL</div><div class="marquee-item"><span>✦</span>LangChain</div><div class="marquee-item"><span>✦</span>GCP</div><div class="marquee-item"><span>✦</span>FastAPI</div><div class="marquee-item"><span>✦</span>Supabase</div><div class="marquee-item"><span>✦</span>AWS Certified</div>
+</div>
+</div>
 <section id="projects">
-  <div class="section-label">Selected Work</div>
-  <div class="section-title">Projects I've shipped</div>
-  <div class="projects-grid">
-
-    <a href="https://github.com/roshanroy7" target="_blank" class="project-row fade-in">
-      <div>
-        <div class="project-num">01</div>
-        <div class="project-metric">&#x2713; 92% detection accuracy</div>
-        <div class="project-name">HAB Detection System</div>
-        <div class="project-desc">An AI-powered harmful algal bloom detection platform built as my MSc team project at UCD. Uses CNN+BiLSTM+Attention models trained on 1.2TB of NASA satellite data. I led the Next.js frontend with interactive Leaflet.js maps, contributed to the ML preprocessing pipeline, and supported GCP cloud deployment. Reduces HAB response time from 3-5 days to under 30 seconds.</div>
-        <div class="project-tags">
-          <span class="tag">Next.js</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">CNN+BiLSTM</span>
-          <span class="tag">YOLOv11</span>
-          <span class="tag">GCP</span>
-          <span class="tag">Python</span>
-          <span class="tag tag-dark">MSc Project, UCD</span>
-        </div>
-      </div>
-      <div class="project-arrow">&nearr;</div>
-    </a>
-
-    <a href="https://github.com/roshanroy7/talkdoc" target="_blank" class="project-row fade-in">
-      <div>
-        <div class="project-num">02</div>
-        <div class="project-name">TalkDoc</div>
-        <div class="project-desc">A RAG-powered document Q&A system. Upload any PDF and ask questions in plain English — answers are grounded in exact source chunks for full transparency. Co-built using LangChain for document ingestion and retrieval, ChromaDB as the vector store, and Mistral 7B running locally via Ollama. Zero API cost, no OpenAI dependency.</div>
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">LangChain</span>
-          <span class="tag">RAG</span>
-          <span class="tag">ChromaDB</span>
-          <span class="tag">Ollama</span>
-          <span class="tag">Streamlit</span>
-        </div>
-      </div>
-      <div class="project-arrow">&nearr;</div>
-    </a>
-
-    <a href="https://job-board-ashen-one.vercel.app" target="_blank" class="project-row fade-in">
-      <div>
-        <div class="project-num">03</div>
-        <div class="project-metric">&#x1F517; Live at job-board-ashen-one.vercel.app</div>
-        <div class="project-name">JobBoard</div>
-        <div class="project-desc">A full-stack job board built from scratch. React frontend with live search, job type filters, and multi-page navigation via React Router. Node.js/Express REST API connected to a PostgreSQL database. Deployed end-to-end — frontend on Vercel, backend and database on Railway.</div>
-        <div class="project-tags">
-          <span class="tag">React</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">Express</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Vercel</span>
-          <span class="tag">Railway</span>
-        </div>
-      </div>
-      <div class="project-arrow">&nearr;</div>
-    </a>
-
-  </div>
+<div class="section-label reveal">Selected Work</div>
+<h2 class="section-title reveal">Things I've <em>built</em></h2>
+<div class="projects-grid">
+<a href="https://remind-ruby.vercel.app" target="_blank" class="project-card featured reveal">
+<div>
+<div class="project-number">01 — LIVE</div>
+<div class="project-name">ReMind</div>
+<div class="project-tagline">Job Application OS</div>
+<div class="project-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Gmail API</span><span class="tag">Google OAuth</span><span class="tag">Supabase</span></div>
+<div class="project-live">Live at remind-ruby.vercel.app</div>
+</div>
+<div>
+<p class="project-desc">I was applying to 50+ jobs and losing track of everything. So I built ReMind — a smart tracker that connects to your Gmail, reads application emails automatically, and detects where you are in the hiring process without you logging a single thing. When a screening call comes in, your CV is already attached to that application.</p>
+</div>
+</a>
+<a href="https://github.com/roshanroy7/talkdoc" target="_blank" class="project-card reveal">
+<div class="project-number">02</div>
+<div class="project-name">TalkDoc</div>
+<div class="project-tagline">RAG-Powered Document Q&A</div>
+<p class="project-desc">Upload any document and ask it questions in plain English. Built with LangChain, ChromaDB vector store, Mistral 7B running locally via Ollama, and Streamlit. No cloud API costs — fully local inference.</p>
+<div class="project-tags"><span class="tag">LangChain</span><span class="tag">Mistral 7B</span><span class="tag">ChromaDB</span><span class="tag">Ollama</span><span class="tag">Streamlit</span></div>
+</a>
+<a href="https://github.com/roshanroy7" target="_blank" class="project-card reveal">
+<div class="project-number">03</div>
+<div class="project-name">HAB Detection</div>
+<div class="project-tagline">ML System · MSc Capstone</div>
+<p class="project-desc">Harmful Algal Bloom detection system using 1.2TB of NASA MODIS satellite data. 92% model accuracy. Led the Next.js/Leaflet.js frontend and GCP deployment. Built for 50 concurrent users.</p>
+<div class="project-tags"><span class="tag">Next.js</span><span class="tag">GCP</span><span class="tag">Python</span><span class="tag">NASA MODIS</span><span class="tag">Leaflet.js</span></div>
+</a>
+</div>
 </section>
-
-<!-- ABOUT -->
+<section id="skills" class="skills-section">
+<div class="section-label reveal">Technical Skills</div>
+<h2 class="section-title reveal">What I <em>know</em></h2>
+<div class="skills-grid">
+<div class="skill-group reveal"><div class="skill-group-title">Frontend</div><ul class="skill-list"><li>React</li><li>Next.js</li><li>React Router</li><li>Tailwind CSS</li><li>JavaScript (ES6+)</li></ul></div>
+<div class="skill-group reveal"><div class="skill-group-title">Backend</div><ul class="skill-list"><li>Node.js</li><li>Express</li><li>FastAPI</li><li>Python</li><li>REST APIs</li></ul></div>
+<div class="skill-group reveal"><div class="skill-group-title">AI / ML</div><ul class="skill-list"><li>LangChain</li><li>CNN · BiLSTM</li><li>RAG Systems</li><li>ChromaDB</li><li>Mistral 7B</li></ul></div>
+<div class="skill-group reveal"><div class="skill-group-title">Infrastructure</div><ul class="skill-list"><li>Supabase / PostgreSQL</li><li>GCP</li><li>AWS (Certified)</li><li>Vercel · Render</li><li>Docker</li></ul></div>
+</div>
+</section>
 <section id="about">
-  <div class="section-label">About</div>
-  <div class="section-title">Who I am</div>
-  <div class="about-grid">
-    <div class="about-text fade-in">
-      <p>I'm <strong>Roshan Palem</strong>, a software engineer and recent MSc Computer Science graduate from <strong>University College Dublin</strong>. I build things that work — full-stack web apps, ML pipelines, and everything in between.</p>
-      <p>My background spans frontend development with React and Next.js, backend systems with Node.js and FastAPI, and production ML with CNN, BiLSTM, LangChain, and GCP. I care about shipping real products, not just writing code.</p>
-      <p>I'm currently based in <strong>Dublin, Ireland</strong> and actively looking for junior software engineering roles where I can contribute from day one and grow fast.</p>
-      <div style="margin-top:32px">
-        <a href="https://linkedin.com/in/roshanpalem-474979239" target="_blank" class="btn-secondary" style="display:inline-flex">LinkedIn &nearr;</a>
-      </div>
-    </div>
-    <div class="skills-cols fade-in">
-      <div>
-        <div class="skill-group-label">Languages</div>
-        <div class="skill-pills">
-          <span class="skill-pill">JavaScript</span>
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">SQL</span>
-          <span class="skill-pill">HTML/CSS</span>
-        </div>
-      </div>
-      <div>
-        <div class="skill-group-label">Frontend</div>
-        <div class="skill-pills">
-          <span class="skill-pill">React</span>
-          <span class="skill-pill">Next.js</span>
-          <span class="skill-pill">React Router</span>
-          <span class="skill-pill">Leaflet.js</span>
-          <span class="skill-pill">Tailwind CSS</span>
-        </div>
-      </div>
-      <div>
-        <div class="skill-group-label">Backend</div>
-        <div class="skill-pills">
-          <span class="skill-pill">Node.js</span>
-          <span class="skill-pill">Express.js</span>
-          <span class="skill-pill">FastAPI</span>
-          <span class="skill-pill">REST APIs</span>
-          <span class="skill-pill">JWT Auth</span>
-        </div>
-      </div>
-      <div>
-        <div class="skill-group-label">AI / ML</div>
-        <div class="skill-pills">
-          <span class="skill-pill">LangChain</span>
-          <span class="skill-pill">RAG</span>
-          <span class="skill-pill">CNN + BiLSTM</span>
-          <span class="skill-pill">YOLOv11</span>
-          <span class="skill-pill">Ollama</span>
-        </div>
-      </div>
-      <div>
-        <div class="skill-group-label">Cloud / DevOps</div>
-        <div class="skill-pills">
-          <span class="skill-pill">GCP</span>
-          <span class="skill-pill">Cloud Run</span>
-          <span class="skill-pill">Vercel</span>
-          <span class="skill-pill">Railway</span>
-          <span class="skill-pill">CI/CD</span>
-          <span class="skill-pill">Docker</span>
-        </div>
-      </div>
-      <div>
-        <div class="skill-group-label">Databases</div>
-        <div class="skill-pills">
-          <span class="skill-pill">PostgreSQL</span>
-          <span class="skill-pill">ChromaDB</span>
-          <span class="skill-pill">Firestore</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="section-label reveal">About</div>
+<h2 class="section-title reveal">Who I <em>am</em></h2>
+<div class="about-grid">
+<div class="about-text reveal">
+<p>I'm <strong>Roshan Palem</strong>, a software engineer based in Dublin, Ireland. I completed my MSc in Computer Science at University College Dublin and I build across the full stack — from React frontends to Node.js backends to production ML systems.</p>
+<p>I don't just learn technologies — I ship things with them. ReMind is a real app I use every day while job hunting. Every project I build solves a problem I actually have.</p>
+<p>I'm actively looking for <strong>Software Engineering, AI/ML, and Data roles</strong> in Dublin or remote. Available immediately on Stamp 1G.</p>
+</div>
+<div class="about-stats reveal">
+<div class="stat-box"><div class="stat-number">4</div><div class="stat-label">Shipped Projects</div></div>
+<div class="stat-box"><div class="stat-number">92%</div><div class="stat-label">ML Model Accuracy</div></div>
+<div class="stat-box"><div class="stat-number">1.2TB</div><div class="stat-label">Satellite Data</div></div>
+<div class="stat-box"><div class="stat-number">MSc</div><div class="stat-label">Computer Science, UCD</div></div>
+</div>
+</div>
 </section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-inner">
-    <div>
-      <div class="section-label" style="margin-bottom:20px">Get in touch</div>
-      <div class="contact-heading">Let's work<br><em>together.</em></div>
-    </div>
-    <div class="contact-links fade-in">
-      <a href="mailto:palemroshanroy@gmail.com" class="contact-link">
-        <span class="contact-link-icon">&#9993;</span>
-        palemroshanroy@gmail.com
-      </a>
-      <a href="https://github.com/roshanroy7" target="_blank" class="contact-link">
-        <span class="contact-link-icon">&#128037;</span>
-        github.com/roshanroy7
-      </a>
-      <a href="https://linkedin.com/in/roshanpalem-474979239" target="_blank" class="contact-link">
-        <span class="contact-link-icon">&#128279;</span>
-        linkedin.com/in/roshanpalem-474979239
-      </a>
-    </div>
-  </div>
+<section id="contact" class="contact-section">
+<div class="section-label reveal" style="justify-content:center">Get In Touch</div>
+<h2 class="section-title reveal" style="text-align:center">Let's <em>work together</em></h2>
+<a href="mailto:roshanpalem7@gmail.com" class="contact-email reveal">roshanpalem7@gmail.com</a>
+<ul class="social-links reveal">
+<li><a href="https://linkedin.com/in/roshan-palem-474979239" target="_blank">LinkedIn</a></li>
+<li><a href="https://github.com/roshanroy7" target="_blank">GitHub</a></li>
+<li><a href="https://remind-ruby.vercel.app" target="_blank">ReMind</a></li>
+</ul>
 </section>
-
-<footer>
-  <p>Roshan Palem &mdash; Dublin, Ireland</p>
-  <p>Built with HTML, CSS &amp; JS</p>
-</footer>
-
+<footer><p>© 2025 Roshan Palem</p><p>Built from scratch · Dublin, Ireland</p></footer>
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+const cursor=document.getElementById('cursor');
+const trail=document.getElementById('cursorTrail');
+let mouseX=0,mouseY=0,trailX=0,trailY=0;
+document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY;cursor.style.left=mouseX-6+'px';cursor.style.top=mouseY-6+'px'});
+function animateTrail(){trailX+=(mouseX-trailX)*0.12;trailY+=(mouseY-trailY)*0.12;trail.style.left=trailX-20+'px';trail.style.top=trailY-20+'px';requestAnimationFrame(animateTrail)}
+animateTrail();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2)';trail.style.transform='scale(1.5)'});el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';trail.style.transform='scale(1)'})});
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)});
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80)}})},{threshold:0.1});
+reveals.forEach(el=>observer.observe(el));
 </script>
-
 </body>
 </html>
